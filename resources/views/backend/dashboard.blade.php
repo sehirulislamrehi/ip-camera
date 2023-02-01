@@ -1,14 +1,9 @@
 @extends("backend.template.layout")
 
 @section('per_page_css')
-<link href="{{ asset('backend/css/video-js.css') }}" rel="stylesheet">
 <style>
     .small-box .inner h3 {
         font-size: 18px;
-    }
-    .vjs-default-skin{
-        width: 100%;
-        height: 300px;
     }
 </style>
 @endsection
@@ -76,40 +71,19 @@
                 </div>
             </div>
             <!-- item card end -->
-
+            
         </div>
 
         <div class="row row-sm charts mt-5">
 
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header"></div>
-                    <div class="card-body">
-                        <video-js id="my_video_1" class="vjs-default-skin" controls preload="auto" width="640" height="268">
-                            <source src="http://127.0.0.1:8000/videos/172.17.107.24/stream.m3u8" type="application/x-mpegURL">
-                        </video-js>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12 pr-2 mb-5">
                 <div class="card">
-                    <div class="card-header"></div>
-                    <div class="card-body">
-                        <video-js id="my_video_2" class="vjs-default-skin" controls preload="auto" >
-                            <source src="http://127.0.0.1:8000/videos/172.17.107.25/stream.m3u8" type="application/x-mpegURL">
-                        </video-js>
+                    <div class="card-header">
+                        Last 6 month order progress
                     </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header"></div>
-                    <div class="card-body">
-                        <video-js id="my_video_3" class="vjs-default-skin" controls preload="auto" >
-                            <source src="http://127.0.0.1:8000/videos/172.17.140.91/stream.m3u8" type="application/x-mpegURL">
-                        </video-js>
+                    <div class="card-body" id="order-progress">
+                        
                     </div>
                 </div>
             </div>
@@ -120,11 +94,116 @@
 @endsection
 
 @section("per_page_js")
-<script src="{{ asset('backend/js/video.js') }}"></script>
-<script src="{{ asset('backend/js/videojs-http-streaming.js') }}"></script>
+<script src="{{ asset('backend/js/apexcharts/apexcharts.js') }}"></script>
 <script>
-    var player_1 = videojs('my_video_1');
-    var player_2 = videojs('my_video_2');
-    var player_2 = videojs('my_video_3');
+
+    $.ajax({
+        url: "{{ route('order.progress') }}",
+        method: 'GET',
+        data: {},
+        success: function(data) {
+            var total_order = Array();
+            var total_income = Array();
+            var possible_income = Array();
+            var time = Array();
+
+            $.each(data.data, (key, value) => {
+                total_income.push(value.total_income)
+                possible_income.push(value.possible_income)
+                total_order.push(value.total_order)
+                time.push(value.time)
+            })
+
+            var options = {
+                series: [
+                    {
+                        name: 'Total Income',
+                        data: total_income,
+                    },
+                    {
+                        name: 'Possible Income',
+                        data: possible_income,
+                    },
+                    {
+                        name: 'Total Order',
+                        data: total_order,
+                    },
+                ],
+                chart: {
+                    height: 350,
+                    type: 'bar',
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            position: 'top', // top, center, bottom
+                        },
+                    }
+                },
+                dataLabels: {
+                    enabled: true,
+                    formatter: function(val) {
+                        return val + "";
+                    },
+                    offsetY: -20,
+                    style: {
+                        fontSize: '11px',
+                        colors: ["#0951a0"]
+                    }
+                },
+                xaxis: {
+                    categories: time,
+                    position: 'top',
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    crosshairs: {
+                        fill: {
+                            type: 'gradient',
+                            gradient: {
+                                colorFrom: '#0951a0',
+                                colorTo: '#0951a0',
+                                stops: [0, 100],
+                                opacityFrom: 0.4,
+                                opacityTo: 0.5,
+                            }
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                    }
+                },
+                yaxis: {
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false,
+                    },
+                    labels: {
+                        show: false,
+                        formatter: function(val) {
+                            return val + "";
+                        }
+                    }
+                },
+                title: {
+                    text: '',
+                    floating: true,
+                    offsetY: 330,
+                    align: 'center',
+                    style: {
+                        color: '#444'
+                    }
+                }
+            };
+            var chart = new ApexCharts(document.querySelector("#order-progress"), options);
+            chart.render();
+        }
+    })
+    
 </script>
 @endsection

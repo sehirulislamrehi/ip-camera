@@ -77,9 +77,16 @@
     <!-- End Page Loading -->
     <div class="loading">Loading&#8230;</div>
 
-    <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v" style="background: url({{ asset('images/auth_banner.jpg') }});"> 
+    <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
 
         <div class="login-wrapper wd-300 wd-xs-400 pd-25 pd-xs-40 bg-white rounded shadow-base">
+            <div class="signin-logo tx-center tx-28 tx-bold tx-inverse">
+                <span class="tx-normal">
+                    @if( $app_info )
+                        <img src="{{ asset('images/info/'.$app_info->logo) }}" style="width: 100%;" alt="" class="responsive-img valign profile-image-login">
+                    @endif
+                </span>
+            </div>
 
             @if( session()->has('success') )
             <div class="new badge green">
@@ -97,9 +104,15 @@
                 @csrf
 
                 <div class="row">
+                    <div class="input-field col s12 center">
+                        
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="form-group col-md-12">
                         <label>Staff ID</label>
-                        <input type="text" name="email" class="form-control" placeholder="Staff ID">
+                        <input type="text" name="staff_id" class="form-control" placeholder="Staff ID">
                     </div>
                 </div>
 

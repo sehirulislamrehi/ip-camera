@@ -13,7 +13,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Bracket Plus">
     <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
-    <meta name="twitter:image" content="">
+    <meta name="twitter:image" content="http://themepixels.me/bracketplus/img/bracketplus-social.png">
 
     <!-- Facebook -->
     <meta property="og:url" content="http://themepixels.me/bracketplus">
@@ -30,7 +30,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>Welcome To IP Camera Live Streaming</title>
+    <title>Frozen Food Software</title>
 
     @include("backend.includes.css")
 
@@ -132,4 +132,6 @@
 
     @include("backend.includes.script")
     
-</b
+</body>
+
+</html>

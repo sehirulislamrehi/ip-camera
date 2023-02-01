@@ -1,12 +1,12 @@
 <script src="{{ asset('backend/lib/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('backend/lib/jquery-ui/ui/widgets/datepicker.js') }}"></script>
 <script src="{{ asset('backend/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('backend/lib/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<!-- <script src="{{ asset('backend/lib/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script> -->
 <script src="{{ asset('backend/lib/moment/min/moment.min.js') }}"></script>
 <script src="{{ asset('backend/lib/peity/jquery.peity.min.js') }}"></script>
-<script src="{{ asset('backend/lib/rickshaw/vendor/d3.min.js') }}"></script>
-<script src="{{ asset('backend/lib/rickshaw/vendor/d3.layout.min.js') }}"></script>
-<script src="{{ asset('backend/lib/rickshaw/rickshaw.min.js') }}"></script>
+<!-- <script src="{{ asset('backend/lib/rickshaw/vendor/d3.min.js') }}"></script> -->
+<!-- <script src="{{ asset('backend/lib/rickshaw/vendor/d3.layout.min.js') }}"></script> -->
+<!-- <script src="{{ asset('backend/lib/rickshaw/rickshaw.min.js') }}"></script> -->
 <script src="{{ asset('backend/lib/jquery.flot/jquery.flot.js') }}"></script>
 <script src="{{ asset('backend/lib/jquery.flot/jquery.flot.resize.js') }}"></script>
 <script src="{{ asset('backend/lib/flot-spline/js/jquery.flot.spline.min.js') }}"></script>
