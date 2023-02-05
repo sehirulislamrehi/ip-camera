@@ -11,7 +11,7 @@
     <div class="br-pageheader">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
             <a class="breadcrumb-item" href="{{ route('dashboard') }}">Dashboard</a>
-            <a class="breadcrumb-item active" href="#">All Location</a>
+            <a class="breadcrumb-item active" href="#">All Path</a>
         </nav>
     </div>
 
@@ -20,8 +20,8 @@
             <div class="col-md-12">
                 <div class="card card-primary card-outline table-responsive">
                     <div class="card-header text-right">
-                        @if( can('add_location') )
-                        <button type="button" data-content="{{ route('location.add.modal') }}" data-target="#myModal" class="btn btn-outline-dark" data-toggle="modal">
+                        @if( can('add_path') )
+                        <button type="button" data-content="{{ route('path.add.modal') }}" data-target="#myModal" class="btn btn-outline-dark" data-toggle="modal">
                             Add
                         </button>
                         @endif
@@ -31,8 +31,7 @@
                             <thead>
                                 <tr>
                                     <th>S.ID</th>
-                                    <th>Name</th>
-                                    <th>Type</th>
+                                    <th>Path</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -64,7 +63,7 @@
         $('.my-datatable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('location.data') }}",
+            ajax: "{{ route('path.data') }}",
             order: [
                 [0, 'Desc']
             ],
@@ -75,12 +74,8 @@
                     searchable: false 
                 },
                 {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'type',
-                    name: 'type'
+                    data: 'path',
+                    name: 'path'
                 },
                 {
                     data: 'is_active',

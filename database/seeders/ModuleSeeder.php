@@ -24,13 +24,20 @@ class ModuleSeeder extends Seeder
                 'position' => 1,
                 'route' => null
             ],
-            
             [
                 'id' => 2,
+                'name' => 'Location Module',
+                'key' => 'location_module',
+                'icon' => 'fas fa-map',
+                'position' => 2,
+                'route' => null
+            ],
+            [
+                'id' => 50,
                 'name' => 'Setting Module',
                 'key' => 'settings',
                 'icon' => 'fas fa-cog',
-                'position' =>6,
+                'position' => 50,
                 'route' => null,
             ],
             

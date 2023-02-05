@@ -30,7 +30,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>Frozen Food Software</title>
+    <title>Central ip camera monitoring system</title>
 
     @include("backend.includes.css")
 
@@ -62,6 +62,14 @@
             text-align: center;
             border-bottom: 1px solid #e5e5e5;
             padding-bottom: 15px;
+        }
+        .footer-title{
+            position: fixed;
+            left: 50%;
+            color: #e5670e;
+            font-weight: bold;
+            opacity: 0.5;
+            bottom: 0;
         }
     </style>
 
@@ -130,6 +138,9 @@
     @yield('body-content')
     <!-- ########## END: MAIN PANEL ########## -->
 
+    <footer>
+        <p class="footer-title">A product of CS-MIS-HW-Automation</p>
+    </footer>
     @include("backend.includes.script")
     
 </body>

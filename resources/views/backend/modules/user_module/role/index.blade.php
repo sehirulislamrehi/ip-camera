@@ -77,57 +77,8 @@
                 <div class="card card-primary card-outline table-responsive">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-11 col-12">
-                                <form action="{{ route('role.all') }}" method="get">
-                                    @csrf
-                                    <div class="row">
 
-                                        <!-- select group -->
-                                        <div class="col-md-3 col-12 form-group">
-                                            <label>Select Group</label><span class="require-span">*</span>
-                                            <select name="group_id" class="form-control my_chosen_1" onchange="groupChange(this)">
-                                                <option value="" disabled selected>Select group</option>
-                                                @foreach( $groups as $group )
-                                                <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                        <!-- select company -->
-                                        <div class="col-md-3 col-12 form-group select-company">
-                                            <label>Select company</label><span class="require-span">*</span>
-                                            <div class="company-block">
-                                                <select name="company_id" class="form-control company_id my_chosen_1" onchange="companyChange(this)">
-                                                    <option value="" selected disabled>Select company</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <!-- select location -->
-                                        <div class="col-md-3 col-12 form-group select-location">
-                                            <label>Select location</label><span class="require-span">*</span>
-                                            <div class="location-block">
-                                                <select name="location_id" class="form-control location_id my_chosen_1" onchange="locationChange(this)">
-                                                    <option value="" selected disabled>Select location</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <!-- button -->
-                                        <div class="col-md-3 col-12 form-group">
-                                            <button type="submit" class="btn btn-success mt-3">
-                                                Search
-                                            </button>
-                                            <a href="{{ route('role.all') }}" class="btn btn-danger mt-3">
-                                                <i class="fas fa-sync"></i>
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="col-md-1 col-12 text-right">
+                            <div class="col-md-1 offset-md-11 text-right">
                                 @if( can("add_roles") )
                                 <button type="button" data-content="{{ route('role.add.modal') }}" data-target="#largeModal" class="btn btn-outline-dark mt-3" data-toggle="modal">
                                     Add
@@ -182,12 +133,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('role.data') }}",
-                data:{
-                    group_id : "{{$search_group ? $search_group->id : null}}",
-                    company_id : "{{$search_company ? $search_company->id : null}}",
-                    location_id : "{{$search_location ? $search_location->id : null}}",
-                },
+                url: "{{ route('role.data') }}"
             },
             order: [
                 [0, 'Desc']
@@ -214,84 +160,4 @@
     });
 </script>
 
-<script>
-    function groupChange(e) {
-        let group_id = e.value
-        $.ajax({
-            type: "GET",
-            url: "{{ route('group.wise.company') }}",
-            data: {
-                group_id: group_id,
-            },
-            success: function(response) {
-                if (response.status == "success") {
-                    $(".company-block").remove();
-                    $(".select-company").append(`
-                        <div class="company-block">
-                            <select name="company_id" class="form-control company_id my_chosen_1" onchange="companyChange(this)">
-                                <option value="" selected disabled>Select company</option>
-                            </select>
-                        </div>
-                    `);
-
-                    $(".location-block").remove();
-                    $(".select-location").append(`
-                        <div class="location-block">
-                            <select name="location_id" class="form-control location_id my_chosen_1" onchange="locationChange(this)">
-                                <option value="" selected disabled>Select location</option>
-                            </select>
-                        </div>
-                    `);
-
-                    $.each(response.data, function(key, value) {
-                        $(".company_id").append(`
-                            <option value="${value.id}">${value.name}</option>
-                        `);
-                    })
-
-                    $(".my_chosen_1").chosen();
-                }
-            },
-            error: function(response) {
-
-            },
-        })
-    }
-
-    function companyChange(e) {
-        let company_id = Array();
-        company_id.push(e.value)
-
-        $.ajax({
-            type: "GET",
-            url: "{{ route('company.wise.location') }}",
-            data: {
-                company_ids: company_id,
-            },
-            success: function(response) {
-                if (response.status == "success") {
-                    $(".location-block").remove();
-                    $(".select-location").append(`
-                        <div class="location-block">
-                            <select name="location_id" class="form-control location_id my_chosen_1" onchange="locationChange(this)">
-                                <option value="" selected disabled>Select location</option>
-                            </select>
-                        </div>
-                    `);
-
-                    $.each(response.data, function(key, value) {
-                        $(".location_id").append(`
-                            <option value="${value.id}">${value.name}</option>
-                        `);
-                    })
-
-                    $(".my_chosen_1").chosen();
-                }
-            },
-            error: function(response) {
-
-            },
-        })
-    }
-</script>
 @endsection

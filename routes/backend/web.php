@@ -44,6 +44,14 @@ Route::group(['prefix' => 'admindashboard', 'middleware' => 'auth'], function ()
     //user module routes end
 
 
+    //location module routes start
+    Route::group(['prefix' => 'location-module'], function(){
+        require_once 'location_module/all_location.php';
+        require_once 'location_module/all_path.php';
+    });
+    //location module routes end
+
+
     //settings module routes start
     Route::group(['prefix' => 'settings-module'], function () {
         require_once 'settings_module/app_info.php';

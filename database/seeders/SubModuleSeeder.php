@@ -39,23 +39,39 @@ class SubModuleSeeder extends Seeder
             ],
             //module id 1 end
 
-            //module id 2 start
+            //module id 50 start
             [
                 'id' => 3,
                 'name' => 'App Info',
                 'key' => 'app_info',
                 'position' => 1,
                 'route' => 'app.info.all',
+                'module_id' => 50,
+            ],
+            //module id 50 end
+
+            //module id 2 start
+            [
+                'id' => 4,
+                'name' => 'All Location',
+                'key' => 'all_location',
+                'position' => 1,
+                'route' => 'all.location',
+                'module_id' => 2,
+            ],
+            [
+                'id' => 5,
+                'name' => 'All Path',
+                'key' => 'all_path',
+                'position' => 2,
+                'route' => 'path.all',
                 'module_id' => 2,
             ],
             //module id 2 end
 
-
-            
-
         
         ]);
 
-        //last id 3
+        //last id 45
     }
 }

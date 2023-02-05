@@ -100,7 +100,37 @@ class UserController extends Controller
     //user add modal start
     public function add_modal(){
         if( can('add_user') ){
-            return view("backend.modules.user_module.user.modals.add");
+            $data = [
+                [
+                    'id' => 1,
+                    'name' => 'HO'
+                ],
+                [
+                    'id' => 1,
+                    'name' => 'HO/MIS'
+                ],
+                [
+                    'id' => 1,
+                    'name' => 'HO/MIS/Hardware'
+                ],
+                [
+                    'id' => 1,
+                    'name' => 'HO/MIS/Software'
+                ],
+                [
+                    'id' => 1,
+                    'name' => 'PIP'
+                ],
+                [
+                    'id' => 1,
+                    'name' => 'PIP/MIS'
+                ],
+                [
+                    'id' => 1,
+                    'name' => 'PIP/MIS/3rd Floor'
+                ],
+            ];
+            return view("backend.modules.user_module.user.modals.add", compact('data'));
         }
         else{
             return unauthorized();

@@ -24,6 +24,7 @@ class RoleController extends Controller
     public function data(){
         if( can('roles') ){
             $role = Role::select("id","name","is_active")->get();
+            
             return DataTables::of($role)
             ->rawColumns(['action', 'is_active'])
             ->editColumn('is_active', function (Role $role) {

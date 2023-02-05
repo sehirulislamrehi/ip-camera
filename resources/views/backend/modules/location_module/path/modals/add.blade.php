@@ -11,28 +11,13 @@
 
         <div class="row">
 
-            <!-- select type -->
+            <!-- type -->
             <div class="col-md-12 col-12 form-group">
                 <label>Type</label><span class="require-span">*</span>
                 <select name="type" class="form-control">
                     @foreach( $types as $type )
                     <option value="{{ $type['value'] }}">{{ $type['name'] }}</option>
                     @endforeach
-                </select>
-            </div>
-
-            <!-- name -->
-            <div class="col-md-12 col-12 form-group">
-                <label>Name</label><span class="require-span">*</span>
-                <input type="text" class="form-control" name="name">
-            </div>
-
-            <!-- Status -->
-            <div class="col-md-12 col-12 form-group">
-                <label>Status</label><span class="require-span">*</span>
-                <select name="is_active" class="form-control chosen">
-                    <option value="1">Active</option>
-                    <option value="0">Inactive</option>
                 </select>
             </div>
 
